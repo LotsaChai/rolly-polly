@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
     public GameObject player;
-    public GameObject projectile;
     [SerializeField] float speed;
     private Rigidbody enemyRb;
     [SerializeField] float health;
@@ -27,13 +26,13 @@ public class EnemyBehaviour : MonoBehaviour
         player = GameObject.Find("Player");
         health = Random.Range(minHealth, maxHealth);
         coinValue = Mathf.RoundToInt(health);
+        size = (health + minSize) * sizeScaler / 10;
+        transform.position = new Vector3(transform.position.x, size/2, transform.position.z);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Stay at y position
-        transform.position = new Vector3(transform.position.x, size/2, transform.position.z);
 
         // Scale damage and speed with health
         speed = speedScaler / (health + 5);
@@ -61,7 +60,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             health -= FindObjectOfType<PlayerController>().GetProjectileDamage();
             FindObjectOfType<EnemySound>().playHitSound();
-        }    
+        }
     }
 
     public float GetDamage()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class SpawnManager : MonoBehaviour
     public GameObject enemy;
     public float startDelay = 2.0f;
     public float spawnInterval = 10.0f;
+
+    private GameObject minimap;
+    public GameObject minimapEnemy;
 
     private float enemySpawnX;
     private float enemySpawnY;
@@ -26,6 +30,7 @@ public class SpawnManager : MonoBehaviour
     {
         InvokeRepeating("SpawnEnemy", startDelay, spawnInterval);
         player = GameObject.Find("Player");
+        minimap = GameObject.Find("Canvas");
     }
 
     // Update is called once per frame
@@ -51,6 +56,13 @@ public class SpawnManager : MonoBehaviour
         else
         {
             Instantiate(enemy, enemySpawnPos, transform.rotation);
+            // InstantiateMinimapImage(enemySpawnPos);
         }
+    }
+
+    private void InstantiateMinimapImage(Vector3 enemySpawnPos) {
+        var tick = Instantiate(minimapEnemy, enemySpawnPos, transform.rotation);
+        tick.transform.SetParent(minimap.transform.GetChild(0));
+        tick.transform.localScale = new Vector3(1, 1, 1);
     }
 }

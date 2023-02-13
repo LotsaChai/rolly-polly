@@ -88,7 +88,7 @@ public class TitlePlayerController : MonoBehaviour
             } 
             else 
             {
-                Moving(transform.position + new Vector3(0, 0, 1), transform.rotation * Quaternion.Euler(90, 0, 0));
+                Moving(transform.position + new Vector3(0, 0, playerMoveDistance), transform.rotation * Quaternion.Euler(90, 0, 0));
                 playerY++;
                 direction = Vector3.right;
                 FindObjectOfType<TitlePlayerSound>().playRollSound();
@@ -104,7 +104,7 @@ public class TitlePlayerController : MonoBehaviour
             } 
             else 
             {
-                Moving(transform.position + new Vector3(-1, 0, 0), transform.rotation * Quaternion.Euler(0, 0, 90));
+                Moving(transform.position + new Vector3(-playerMoveDistance, 0, 0), transform.rotation * Quaternion.Euler(0, 0, 90));
                 playerX--;
                 direction = Vector3.forward;
                 FindObjectOfType<TitlePlayerSound>().playRollSound();
@@ -119,7 +119,7 @@ public class TitlePlayerController : MonoBehaviour
             } 
             else 
             {
-                Moving(transform.position + new Vector3(0, 0, -1), transform.rotation * Quaternion.Euler(-90, 0, 0));
+                Moving(transform.position + new Vector3(0, 0, -playerMoveDistance), transform.rotation * Quaternion.Euler(-90, 0, 0));
                 playerY--;
                 direction = Vector3.left;
                 FindObjectOfType<TitlePlayerSound>().playRollSound();
@@ -134,7 +134,7 @@ public class TitlePlayerController : MonoBehaviour
             } 
             else 
             {
-                Moving(transform.position + new Vector3(1, 0, 0), transform.rotation * Quaternion.Euler(0, 0, -90));
+                Moving(transform.position + new Vector3(playerMoveDistance, 0, 0), transform.rotation * Quaternion.Euler(0, 0, -90));
                 playerX++;
                 direction = Vector3.back;
                 FindObjectOfType<TitlePlayerSound>().playRollSound();
